@@ -62,7 +62,7 @@ d3.csv("roomData.csv", function(error, data) {
       .attr("y", 6)
       .attr("dy", "1em")
       .style("text-anchor", "end")
-      .text("Average Price");
+      .text("Average Price per Night");
 
   svg.selectAll(".bar")
       .data(data)
@@ -182,9 +182,17 @@ d3.csv("roomData.csv", function(error, data) {
       .data(elements)
       .enter().append("option")
       .attr("value", function(d){
+          console.log(d)
         return d;
       })
       .text(function(d){
-        return d;
+        //return d;
+        if (d == "price") {
+            return "Overall Averages";
+        } else if (d == "shared") {
+            return "Shared Room";
+        } else if (d == "entire") {
+            return "Entire House/Appt"
+        } else { return "Private Room" }
       })
 });
